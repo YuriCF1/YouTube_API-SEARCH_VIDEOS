@@ -1,0 +1,36 @@
+<div>
+  <div class="search_container flex">
+    <h3>Buscas</h3>
+    <input id="busca" type="text" placeholder="Pesquisar" class="search" />
+  </div>
+  <div class="videos_container flex">
+    <div class="videos_geral flex" id="resultados_container">
+      <h2 id="slogan">
+        Educação, entretenimento, notícias... Tire o melhor do YouTube!
+      </h2>
+    </div>
+  </div>
+
+  <div id="videoModal" class="modal">
+    <div class="modal-content">
+      <div class="close">
+        <img class="close-icon" src="../assets/close-icon.svg" alt="Fechar" id="favIcon"/>
+      </div>
+      <iframe
+        id="frame_Video"
+        width="560"
+        height="315"
+        frameborder="0"
+        allowfullscreen
+      ></iframe>
+      <div class="modal-info">
+        <h2>Título: <span id="video-titulo"></span></h2>
+        <p>Canal: <span id="video-canal"></span></p>
+        <p>Descrição: <span id="video-desc"></span></p>
+      </div>
+    </div>
+  </div>
+  <script>
+    var exports = {};
+  </script>
+</div>

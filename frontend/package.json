@@ -1,0 +1,15 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run build:mf_drawer && npm run build:mf_videos",
+    "build:mf_drawer": "tsc ./frontend/mf_drawer/public/scripts.ts --outDir ./frontend/mf_drawer/public",
+    "build:mf_videos": "tsc ./frontend/mf_videos/public/scripts.ts --outDir ./frontend/mf_videos/public",
+    "watch": "tsc --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
