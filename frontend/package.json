@@ -1,15 +1,31 @@
 {
   "name": "frontend",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./src/app.js",
   "scripts": {
+    "start": "nodemon back-to-front/src/app.js",
+
+    "build:mf_drawer": "tsc ./micro_frontends/mf_drawer/scripts/*.ts --outDir ./micro_frontends/mf_drawer/scripts",
+    "build:mf_videos": "tsc ./micro_frontends/mf_videos/busca/scripts/*.ts --outDir ./micro_frontends/mf_videos/busca/scripts && tsc ./micro_frontends/mf_videos/favoritos/scripts/*.ts --outDir ./micro_frontends/mf_videos/favoritos/scripts",
     "build": "npm run build:mf_drawer && npm run build:mf_videos",
-    "build:mf_drawer": "tsc ./frontend/mf_drawer/public/scripts.ts --outDir ./frontend/mf_drawer/public",
-    "build:mf_videos": "tsc ./frontend/mf_videos/public/scripts.ts --outDir ./frontend/mf_videos/public",
-    "watch": "tsc --watch"
+
+    "watch:frontend": "tsc -p micro_frontends/tsconfig.json --watch",
+    "watch:backend": "tsc -p back-to-front/tsconfig.json --watch",
+    "watch": "concurrently \"npm run watch:frontend\" \"npm run watch:backend\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "express": "^4.19.2",
+    "nodemon": "^3.1.4"
+  },
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/body-parser": "^1.19.5",
+    "@types/express": "^4.17.21",
+    "concurrently": "^8.2.2",
+    "typescript": "^5.5.2"
+  }
 }

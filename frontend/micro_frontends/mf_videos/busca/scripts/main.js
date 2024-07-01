@@ -1,5 +1,8 @@
 //ARQUIVO RESPONSÁVEL POR FAZER BUSCAS E IMPLEMENTAR HTML
+console.log('tee');
 import { gerenciaFavorito } from "./test.js";
+import { grito } from "./test.js";
+grito();
 // document.addEventListener('load', () => {
 let timeoutId;
 const input = document.getElementById('busca');
