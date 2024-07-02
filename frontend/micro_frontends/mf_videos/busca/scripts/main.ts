@@ -26,7 +26,7 @@ input.addEventListener('input', () => {
     console.log('Pesquisa');
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => {
-      const url = `http://localhost:8001/api/videos/search?query=${encodeURIComponent(termoBuscado)}`;
+      const url = `http://localhost:8000/api/videos/search?query=${encodeURIComponent(termoBuscado)}`;
 
       fetch(url)
         .then(response => {
@@ -61,7 +61,7 @@ function exibeResultado(results: IResponse[]) {
     videoDiv.classList.add('video-resulto');
 
     const favEstrela = document.createElement('img')
-    favEstrela.src = '../assets/fav-icon-off.svg'
+    favEstrela.src = 'micro_frontends/assets/fav-icon-off.svg'
     favEstrela.id = result.id;
     favEstrela.classList.add('fav-estrela') //Estrela de favorito
 

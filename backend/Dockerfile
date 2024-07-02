@@ -1,0 +1,23 @@
+# Utilizar uma imagem oficial do Node.js como base
+FROM node:20.5.0
+
+# Definir o diretório de trabalho dentro do contêiner
+WORKDIR /app
+
+# Copiar os arquivos package.json e package-lock.json (se existir)
+COPY package*.json ./
+
+# Instalar as dependências do projeto
+RUN npm install
+
+# Copiar o restante dos arquivos do projeto para o diretório de trabalho
+COPY . .
+
+# Compilar o código TypeScript
+# RUN npm run build
+
+# Expor a porta na qual a aplicação será executada
+EXPOSE 8000
+
+# Comando para iniciar a aplicação
+CMD ["npm", "run", "start"]

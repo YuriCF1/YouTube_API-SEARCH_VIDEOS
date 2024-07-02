@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app                # Monta o diretório do host para o diretório do contêiner
+      - /app/node_modules             # Monta node_modules como volume para persistir dependências
+    environment:
+      - NODE_ENV=development
+    command: npm run start             # Comando ajustado para usar o script dev do package.json do backend
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/usr/src/app       # Monta o diretório do host para o diretório do contêiner
+      - /usr/src/app/node_modules     # Monta node_modules como volume para persistir dependências
+    environment:
+      - NODE_ENV=development
+    command: npm run start
+

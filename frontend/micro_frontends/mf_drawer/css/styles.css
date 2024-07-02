@@ -87,12 +87,13 @@ body {
 
 .videos_container {
   box-sizing: border-box;
-  width: 100%;
+  width: 80%;
   margin-left: 15.5rem;
   padding-top: 5rem;
 }
 
 .videos_geral {
+  display: flex;
   flex-wrap: wrap;
   gap: 1rem;
   justify-content: flex-start;
@@ -123,7 +124,6 @@ body {
   flex-direction: column;
   cursor: pointer;
 }
-
 
 .img-button {
   height: auto;
