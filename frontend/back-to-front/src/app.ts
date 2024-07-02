@@ -23,10 +23,6 @@ const corsOptions = {
     ],
 };
 app.use(cors(corsOptions));
-// Configuração básica do CORS permitindo qualquer origem
-app.use(cors());
-
-// Servindo arquivos estáticos
 app.use(express.static(basePath))
 
 app.get('/', (req, res) => {

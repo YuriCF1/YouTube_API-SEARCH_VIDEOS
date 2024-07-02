@@ -26,9 +26,6 @@ const corsOptions = {
     ],
 };
 app.use((0, cors_1.default)(corsOptions));
-// Configuração básica do CORS permitindo qualquer origem
-app.use((0, cors_1.default)());
-// Servindo arquivos estáticos
 app.use(express_1.default.static(basePath));
 app.get('/', (req, res) => {
     const indexPath = path_1.default.join(basePath, 'micro_frontends', 'mf_drawer', 'index.html');
