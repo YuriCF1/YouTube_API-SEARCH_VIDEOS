@@ -1,15 +1,23 @@
-<div>
+<div id="componente_favorito" class="inv">
+  <div class="title_container flex">
+    <h3>Favoritos</h3>
+    <!-- <input id="buscar" type="text" placeholder="Pesquisar" class="search" /> -->
+  </div>
   <div class="videos_container flex">
-    <div class="videos_geral flex" id="resultados_container">
+    <div class="videos_geral flex" id="resultados_container_favorito">
       <h2 id="slogan">
-        Educação, entretenimento, notícias... Tire o melhor do YouTube!
+        Salve seus favoritos do <strong class="youtube">YouTube</strong> aqui!
       </h2>
     </div>
   </div>
   <div id="videoModal" class="modal">
     <div class="modal-content">
       <div class="close">
-        <img class="close-icon" src="/micro_frontends/assets/close-icon.svg" alt="Fechar" />
+        <img
+          class="close-icon"
+          src="/micro_frontends/assets/close-icon.svg"
+          alt="Fechar"
+        />
       </div>
       <iframe
         id="frame_Video"
@@ -30,4 +38,3 @@
 <script>
   var exports = {};
 </script>
-<!-- <script type="module" src="./scripts/main.js"></script> -->

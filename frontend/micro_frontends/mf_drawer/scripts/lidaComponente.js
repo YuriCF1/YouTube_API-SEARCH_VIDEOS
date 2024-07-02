@@ -8,20 +8,43 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const videoBotao = document.getElementById('videos');
-document.addEventListener('DOMContentLoaded', () => {
-    loadContent("/micro_frontends/mf_videos/busca/index.html", "/micro_frontends/mf_videos/busca/scripts/main.js");
-});
-function loadContent(url, scriptPath) {
-    return __awaiter(this, void 0, void 0, function* () {
-        const response = yield fetch(url);
-        const content = yield response.text();
-        document.getElementById('componente_atual').innerHTML = content;
-        if (scriptPath) {
-            const script = document.createElement("script");
-            script.src = scriptPath;
-            script.type = "module";
-            document.body.appendChild(script);
-        }
-    });
-}
+document.addEventListener('DOMContentLoaded', () => __awaiter(void 0, void 0, void 0, function* () {
+    function loadContent(url) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (!url)
+                return;
+            const response = yield fetch(url);
+            const content = yield response.text();
+            const componenteAtual = document.getElementById('componente_atual');
+            if (componenteAtual) {
+                componenteAtual.innerHTML += content;
+            }
+        });
+    }
+    function loadScript(caminhoScript) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (!caminhoScript)
+                return;
+            return new Promise((resolve, reject) => {
+                const script = document.createElement("script");
+                script.src = caminhoScript;
+                script.type = "module";
+                script.onload = resolve;
+                script.onerror = reject;
+                document.body.appendChild(script);
+            });
+        });
+    }
+    try {
+        yield loadContent("/micro_frontends/mf_videos/busca/index.html");
+        yield loadContent("/micro_frontends/mf_videos/favoritos/index.html");
+        yield new Promise(resolve => setTimeout(resolve, 200));
+        yield loadScript("/micro_frontends/mf_videos/busca/scripts/main.js");
+        yield loadScript("/micro_frontends/mf_videos/favoritos/scripts/mainFav.js");
+        yield loadScript("/micro_frontends/mf_drawer/scripts/lidaExbicao.js");
+        console.log('Todos os conteúdos e scripts foram carregados.');
+    }
+    catch (error) {
+        console.error('Ocorreu um erro durante o carregamento:', error);
+    }
+}));
