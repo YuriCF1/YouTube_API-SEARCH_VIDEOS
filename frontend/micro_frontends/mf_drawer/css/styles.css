@@ -9,39 +9,10 @@ body {
   display: flex;
 }
 
-.flex-column {
+/* .flex-column {
   display: flex;
   flex-direction: column;
-}
-
-.search_container {
-  width: 100%;
-  align-items: center;
-  background-color: #100d17;
-  position: fixed;
-
-  left: 3rem;
-  z-index: 10000;
-}
-
-.search {
-  background-color: inherit;
-  border: 1px solid;
-  border-radius: 40px;
-  margin-left: 33%;
-  font-family: inherit;
-  padding: 0 4px 0 16px;
-  height: 2rem;
-  width: 25rem;
-  color: #190f2e;
-  font-size: 1.5rem;
-  background-color: #d5cbeb;
-}
-
-.wrapper {
-  display: flex;
-  gap: 1rem;
-}
+} */
 
 .nav_container {
   width: 15rem;
@@ -51,12 +22,50 @@ body {
   border-right: solid 1px #e2d9f51c;
   position: fixed;
   top: 5rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .nav_container > nav {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1rem;
+}
+
+.youtube {
+  color: #c4302b;
+  background-image: linear-gradient(0deg, #ff0000, #ffffff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.search_container {
+  width: 100%;
+  align-items: center;
+  background-color: #100d17;
+  position: fixed;
+  left: 3%;
+  z-index: 10000;
+}
+
+.search {
+  background-color: inherit;
+  border: 1px solid;
+  border-radius: 40px;
+  margin-left: 8%;
+  font-family: inherit;
+  padding: 0 4px 0 16px;
+  height: 2rem;
+  width: 70%;
+  color: #190f2e;
+  font-size: 1.5rem;
+  background-color: #d5cbeb;
+}
+
+.wrapper {
+  display: flex;
   gap: 1rem;
 }
 
@@ -88,7 +97,7 @@ body {
 .videos_container {
   box-sizing: border-box;
   width: 80%;
-  margin-left: 15.5rem;
+  margin-left: 15%;
   padding-top: 5rem;
 }
 
@@ -97,6 +106,10 @@ body {
   flex-wrap: wrap;
   gap: 1rem;
   justify-content: flex-start;
+}
+
+#slogan {
+  margin-left: 10rem;
 }
 
 .video-resulto {
@@ -111,7 +124,7 @@ body {
 .fav-estrela {
   width: 3rem;
   position: absolute;
-  top: 15rem;
+  top: 13rem;
   right: 1rem;
   cursor: pointer;
 }
@@ -195,4 +208,67 @@ body {
 
 .modal-info p {
   margin: 5px 0;
+}
+
+/* Media Queries */
+@media screen and (max-width: 1200px) {
+  .nav_container {
+    width: 12rem;
+  }
+  .videos_container {
+    margin-left: 12rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #slogan {
+    margin: 0 auto;
+  }
+
+  .search_container {
+    top: 0;
+  }
+  .search {
+    width: 60%;
+    margin-left: 5%;
+  }
+
+  .nav_container {
+    justify-content: center;
+    flex-direction: row;
+    border-right: none;
+    align-items: center;
+    width: 100%;
+    flex-direction: row;
+    height: 5rem;
+    top: 3rem;
+    z-index: 100;
+    background-color: #100d17;
+  }
+  
+  .nav_container > nav {
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: row;
+    height: 3rem;
+    width: auto;
+  }
+
+  .videos_container {
+    width: 90%;
+    margin: 5rem auto 0;
+    padding-top: 3rem;
+  }
+
+  .fav-estrela {
+    width: 2.5rem;
+    position: absolute;
+    top: 12rem;
+    right: 1rem;
+    cursor: pointer;
+  }
+
+  .video-resulto {
+    width: 100%;
+  }
 }
