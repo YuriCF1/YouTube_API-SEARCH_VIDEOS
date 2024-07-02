@@ -1,9 +1,5 @@
 //ARQUIVO RESPONSÁVEL POR FAZER BUSCAS E IMPLEMENTAR HTML
-console.log('tee');
-import { gerenciaFavorito } from "./test.js";
-import { grito } from "./test.js";
-grito();
-// document.addEventListener('load', () => {
+import { adicionarFav } from "./manageFavorites.js";
 let timeoutId;
 const input = document.getElementById('busca');
 const resultadoContainer = document.getElementById('resultados_container');
@@ -20,7 +16,7 @@ input.addEventListener('input', () => {
         console.log('Pesquisa');
         clearTimeout(timeoutId);
         timeoutId = setTimeout(() => {
-            const url = `http://localhost:8000/api/videos/search?query=${encodeURIComponent(termoBuscado)}`;
+            const url = `http://localhost:8000/api/search?query=${encodeURIComponent(termoBuscado)}`;
             fetch(url)
                 .then(response => {
                 if (!response.ok) {
@@ -35,15 +31,15 @@ input.addEventListener('input', () => {
                 .catch(error => {
                 console.error('Ops... Erro ao fazer requisição:', error);
             });
-        }, 10);
+        }, 1);
     }
     else {
         clearTimeout(timeoutId);
         resultadoContainer.innerHTML = '';
         resultadoContainer.innerHTML = `
-      <h2 id="slogan">
-        Educação, entretenimento, notícias... Tire o melhor do YouTube!
-      </h2>`;
+    <h2 id="slogan">
+      Educação, entretenimento, notícias... Tire o melhor do <strong class="youtube">YouTube</strong>!
+    </h2>`;
     }
 });
 function exibeResultado(results) {
@@ -51,10 +47,6 @@ function exibeResultado(results) {
     results.forEach(result => {
         const videoDiv = document.createElement('div');
         videoDiv.classList.add('video-resulto');
-        const favEstrela = document.createElement('img');
-        favEstrela.src = 'micro_frontends/assets/fav-icon-off.svg';
-        favEstrela.id = result.id;
-        favEstrela.classList.add('fav-estrela'); //Estrela de favorito
         const videoButton = document.createElement('button');
         videoButton.classList.add('video-button');
         const thumbnailEncontrada = document.createElement('img');
@@ -72,12 +64,27 @@ function exibeResultado(results) {
             canal.innerHTML = `${result.channelTitle}`;
             desc.innerHTML = `${result.description}`;
         });
+        const favEstrela = document.createElement('img');
+        favEstrela.src = 'micro_frontends/assets/fav-icon-off.svg';
+        favEstrela.id = result.id;
+        favEstrela.classList.add('fav-estrela'); //Estrela de favorito
+        const videosInfos = {
+            id: result.id,
+            channelId: result.channelId,
+            title: result.title,
+            thumbnail: result.thumbnail,
+            betterThumbnail: result.betterThumbnail,
+            description: result.description,
+            channelTitle: result.channelTitle,
+        };
+        const videosAtributo = JSON.stringify(videosInfos);
+        favEstrela.setAttribute('data-videoInfo', videosAtributo);
         videoDiv.appendChild(videoButton);
         videoDiv.appendChild(favEstrela);
         resultadoContainer.appendChild(videoDiv);
         favEstrela.addEventListener('click', () => {
             const idFav = favEstrela.id;
-            gerenciaFavorito(idFav);
+            adicionarFav(idFav) ? favEstrela.src = 'micro_frontends/assets/fav-icon-on.svg' : favEstrela.src = 'micro_frontends/assets/fav-icon-off.svg';
         });
     });
 }
@@ -91,4 +98,3 @@ window.addEventListener('click', (event) => {
         frameVideo.src = '';
     }
 });
-// });
