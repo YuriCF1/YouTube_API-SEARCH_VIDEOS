@@ -42,9 +42,8 @@ document.addEventListener('DOMContentLoaded', () => __awaiter(void 0, void 0, vo
         yield loadScript("/micro_frontends/mf_videos/busca/scripts/main.js");
         yield loadScript("/micro_frontends/mf_videos/favoritos/scripts/mainFav.js");
         yield loadScript("/micro_frontends/mf_drawer/scripts/lidaExbicao.js");
-        console.log('Todos os conteúdos e scripts foram carregados.');
     }
     catch (error) {
-        console.error('Ocorreu um erro durante o carregamento:', error);
+        console.error('Ocorreu um erro durante o carregamento de algum script:', error);
     }
 }));

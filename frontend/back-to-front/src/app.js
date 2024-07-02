@@ -5,14 +5,32 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const path_1 = __importDefault(require("path"));
+const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
-// Define o caminho base como duas pastas acima do diretório atual
 const basePath = path_1.default.join(__dirname, '..', '..');
-// Configuração para servir todos os arquivos estáticos da raiz
+const corsOptions = {
+    origin: [
+        "http://localhost:3000",
+        "http://localhost:8000",
+        "https://youtube.com",
+        "https://googleads.g.doubleclick.net",
+        "https://googleads.g.doubleclick.net/pagead/id",
+        "https://play.google.com"
+    ],
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: [
+        "Content-Type",
+        "Authorization",
+        "Access-Control-Allow-Credentials",
+    ],
+};
+app.use((0, cors_1.default)(corsOptions));
+// Configuração básica do CORS permitindo qualquer origem
+app.use((0, cors_1.default)());
+// Servindo arquivos estáticos
 app.use(express_1.default.static(basePath));
-// Rota principal
 app.get('/', (req, res) => {
-    // Construindo o caminho para o arquivo index.html do micro frontend mf_drawer
     const indexPath = path_1.default.join(basePath, 'micro_frontends', 'mf_drawer', 'index.html');
     res.sendFile(indexPath);
 });

@@ -8,9 +8,25 @@ import favortiesRoutes from './routes/favoritosRoutes'
 dotenv.config({ path: "./.env" });
 
 const app = express();
-const port = process.env.PORT || 3000;
 
-app.use(cors());
+const port = process.env.PORT || 3000;
+const corsOptions = {
+  origin: [
+    "http://localhost:3000",
+    "http://localhost:8000",
+    "https://youtube.com",
+    "https://googleads.g.doubleclick.net",
+    "https://play.google.com"
+  ],
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: [
+    "Content-Type",
+    "Authorization",
+    "Access-Control-Allow-Credentials",
+  ],
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use("/api/", searchRoutes);

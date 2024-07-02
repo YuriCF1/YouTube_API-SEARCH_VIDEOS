@@ -23,11 +23,37 @@
           </nav>
         </div>
         <div id="componente_atual"></div>
-        <script>
-          var exports = {};
-        </script>
-        <script src="/micro_frontends/mf_drawer/scripts/lidaComponente.js"></script>
+        <div id="videoModal" class="modal">
+          <div class="modal-content">
+            <div class="close">
+              <img
+                class="close-icon"
+                src="/micro_frontends/assets/close-icon.svg"
+                alt="Fechar"
+              />
+            </div>
+            <iframe
+              id="frame_Video"
+              width="560"
+              height="315"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+            <div class="modal-info">
+              <h2>Título: <span id="video-titulo"></span></h2>
+              <p>Canal: <span id="video-canal"></span></p>
+              <p>Descrição: <span id="video-desc"></span></p>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
+    <script>
+      var exports = {};
+    </script>
+    <script src="/micro_frontends/mf_drawer/scripts/lidaComponente.js"></script>
   </body>
 </html>

@@ -7,19 +7,22 @@ const fechaModal = document.getElementsByClassName('close')[0];
 const titulo = document.getElementById('video-titulo');
 const desc = document.getElementById('video-desc');
 const canal = document.getElementById('video-canal');
+const storedVideosJSON = localStorage.getItem('videoFavs');
+let storedVideos = storedVideosJSON ? JSON.parse(storedVideosJSON) : [];
 export function exibeResultado(results, pagina) {
     let containerUsado;
+    let ehPaginaBusca = pagina === 'busca' ? true : false;
     if (pagina === 'busca') {
         containerUsado = resultadoContainerBusca;
         containerUsado.innerHTML = '';
     }
     else if (pagina === 'favoritos') {
         containerUsado = resultadoContainerFavorito;
-        console.log('Container', containerUsado);
         containerUsado.innerHTML = '';
     }
     else {
-        console.log('Nome da página inexisten ou digitado errado!');
+        console.log('Nome da página inexistente ou digitado errado!');
+        return;
     }
     results.forEach(result => {
         const videoDiv = document.createElement('div');
@@ -35,24 +38,34 @@ export function exibeResultado(results, pagina) {
         tituloEncontrado.textContent = result.title;
         videoButton.appendChild(tituloEncontrado);
         videoButton.addEventListener('click', () => {
-            frameVideo.src = `https://www.youtube.com/embed/${result.id}`;
             modal.style.display = 'block';
-            titulo.innerHTML = `${result.title}`;
-            canal.innerHTML = `${result.channelTitle}`;
-            desc.innerHTML = `${result.description}`;
+            titulo.innerHTML = result.title;
+            canal.innerHTML = result.channelTitle;
+            desc.innerHTML = result.description;
+            frameVideo.src = `https://www.youtube.com/embed/${result.id}?origin=https://yourdomain.com&rel=0&autoplay=1&modestbranding=1`;
+            // if (ehPaginaBusca) {
+            //     frameVideo.src = `https://www.youtube.com/embed/${result.id}`;
+            //     modal.style.display = 'block';
+            //     titulo.innerHTML = `${result.title}`;
+            //     canal.innerHTML = `${result.channelTitle}`;
+            //     desc.innerHTML = `${result.description}`;
+            // } else {
+            //     frameVideoFav.src = `https://www.youtube.com/embed/${result.id}`;
+            //     modalFav.style.display = 'block';
+            //     titulo.innerHTML = `${result.title}`;
+            //     canal.innerHTML = `${result.channelTitle}`;
+            //     desc.innerHTML = `${result.description}`;
+            // }
         });
         const favEstrela = document.createElement('img');
-        if (pagina === 'busca') {
+        if (ehPaginaBusca) {
             favEstrela.src = 'micro_frontends/assets/fav-icon-off.svg';
         }
         else if (pagina === 'favoritos') {
             favEstrela.src = 'micro_frontends/assets/fav-icon-on.svg';
         }
-        else {
-            console.log('Nome da página inexisten ou digitado errado!');
-        }
         favEstrela.id = result.id;
-        favEstrela.classList.add('fav-estrela'); //Estrela de favorito
+        favEstrela.classList.add('fav-estrela'); // Estrela de favorito
         const videosInfos = {
             id: result.id,
             channelId: result.channelId,
@@ -64,22 +77,36 @@ export function exibeResultado(results, pagina) {
         };
         const videosAtributo = JSON.stringify(videosInfos);
         favEstrela.setAttribute('data-videoInfo', videosAtributo);
+        // Verificando se o vídeo está nos storedVideos, vindo do LocalStorage
+        const videoArmazenado = storedVideos.find(video => video.id === result.id);
+        if (videoArmazenado) {
+            favEstrela.src = 'micro_frontends/assets/fav-icon-on.svg';
+        }
         videoDiv.appendChild(videoButton);
         videoDiv.appendChild(favEstrela);
         containerUsado.appendChild(videoDiv);
+        fechaModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+            frameVideo.src = '';
+        });
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+                frameVideo.src = '';
+            }
+        });
         favEstrela.addEventListener('click', () => {
             const idFav = favEstrela.id;
-            adicionarFav(idFav) ? favEstrela.src = 'micro_frontends/assets/fav-icon-on.svg' : favEstrela.src = 'micro_frontends/assets/fav-icon-off.svg';
+            if (adicionarFav(idFav)) {
+                favEstrela.src = 'micro_frontends/assets/fav-icon-on.svg';
+                storedVideos.push(result);
+            }
+            else {
+                favEstrela.src = 'micro_frontends/assets/fav-icon-off.svg';
+                storedVideos = storedVideos.filter(video => video.id !== result.id); // Remove do storedVideos se já estiver no LocalStorage
+            }
+            // Atualizando o localStorage
+            localStorage.setItem('videoFavs', JSON.stringify(storedVideos));
         });
     });
 }
-fechaModal.addEventListener('click', () => {
-    modal.style.display = 'none';
-    frameVideo.src = '';
-});
-window.addEventListener('click', (event) => {
-    if (event.target === modal) {
-        modal.style.display = 'none';
-        frameVideo.src = '';
-    }
-});
