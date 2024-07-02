@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "./src/app.js",
   "scripts": {
-    "start": "nodemon back-to-front/src/app.js --watch micro_frontends --ext html,css,js",
+    "start": "nodemon back-to-front/src/app.js --watch micro_frontends --ext html,css,js,ts",
 
     "build:mf_drawer": "tsc ./micro_frontends/mf_drawer/scripts/*.ts --outDir ./micro_frontends/mf_drawer/scripts",
     "build:mf_videos": "tsc ./micro_frontends/mf_videos/busca/scripts/*.ts --outDir ./micro_frontends/mf_videos/busca/scripts && tsc ./micro_frontends/mf_videos/favoritos/scripts/*.ts --outDir ./micro_frontends/mf_videos/favoritos/scripts",

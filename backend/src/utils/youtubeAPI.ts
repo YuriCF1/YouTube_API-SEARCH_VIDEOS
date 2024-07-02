@@ -28,6 +28,7 @@ export const searchVideos = async (query: string) => {
   //   channelTitle: item.snippet.channelTitle,
   // }));
 
+  // /*
   return [
     {
       "id": "Hy7pbofsyU4",
@@ -255,4 +256,6 @@ export const searchVideos = async (query: string) => {
       "channelTitle": "RUSH WAVE"
     }
   ]
+
+  // */
 };
