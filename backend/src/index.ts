@@ -5,11 +5,11 @@ import dotenv from "dotenv";
 import searchRoutes from "./routes/searchRoutes";
 import favortiesRoutes from './routes/favoritosRoutes'
 
-dotenv.config({ path: "./.env" });
+// dotenv.config({ path: "./.env" }); //Teoricamente, a viria do arquivo env
 
 const app = express();
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8000;
 const corsOptions = {
   origin: [
     "http://localhost:3000",
