@@ -18,3 +18,5 @@ Esse projeto está sendo realizado como parte do processo seletivo da empresa iC
 - [ X ] - Função para adicionar/remover favoritos
 - [ X ] - Função para mostrar os favoritos
 - [ X ] - Docker compose elaborado
+
+- [ X ] - Teste unitário da função principal de buscar vídeos no backend

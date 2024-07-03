@@ -25,7 +25,7 @@ input.addEventListener('input', () => {
         .catch(error => {
           console.error('Ops... Erro ao fazer requisição:', error);
         });
-    }, 1);
+    }, 1500); //Espera 1.5 segundos para fazer a pesquisa, para o usuário terminar de digitar. Economizando recursos. 
   } else {
     clearTimeout(timeoutId);
     resultadoContainer!.innerHTML = '';
