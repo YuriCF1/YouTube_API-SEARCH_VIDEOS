@@ -14,4 +14,7 @@ Esse projeto está sendo realizado como parte do processo seletivo da empresa iC
   - [ X ] Pasta Interfaces
 - [ X ] - BACKEND INICIAL VALIDADO NO POSTMAN
 
-- [ ] - Elaborando Micro Frontends
+- [ X ] - Micro Frontends Elaborado
+- [ X ] - Função para adicionar/remover favoritos
+- [ X ] - Função para mostrar os favoritos
+- [ X ] - Docker compose elaborado
