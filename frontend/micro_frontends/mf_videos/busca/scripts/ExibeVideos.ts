@@ -16,7 +16,7 @@ const canal = document.getElementById('video-canal') as HTMLElement;
 const storedVideosJSON = localStorage.getItem('videoFavs');
 
 let storedVideos: IResponse[] = storedVideosJSON ? JSON.parse(storedVideosJSON) : [];
-export function exibeResultado(results: IResponse[], pagina: string) {
+export const exibeResultado =(results: IResponse[], pagina: string) => {
     let containerUsado;
     let ehPaginaBusca = pagina === 'busca' ? true : false;
     if (pagina === 'busca') {
@@ -32,7 +32,7 @@ export function exibeResultado(results: IResponse[], pagina: string) {
 
     results.forEach(result => {
         const videoDiv = document.createElement('div');
-        videoDiv.classList.add('video-resulto');
+        videoDiv.classList.add('video-resultado');
 
         const videoButton = document.createElement('button');
         videoButton.classList.add('video-button');
@@ -53,19 +53,6 @@ export function exibeResultado(results: IResponse[], pagina: string) {
             canal.innerHTML = result.channelTitle;
             desc.innerHTML = result.description;
             frameVideo.src = `https://www.youtube.com/embed/${result.id}?origin=https://yourdomain.com&rel=0&autoplay=1&modestbranding=1`;
-            // if (ehPaginaBusca) {
-            //     frameVideo.src = `https://www.youtube.com/embed/${result.id}`;
-            //     modal.style.display = 'block';
-            //     titulo.innerHTML = `${result.title}`;
-            //     canal.innerHTML = `${result.channelTitle}`;
-            //     desc.innerHTML = `${result.description}`;
-            // } else {
-            //     frameVideoFav.src = `https://www.youtube.com/embed/${result.id}`;
-            //     modalFav.style.display = 'block';
-            //     titulo.innerHTML = `${result.title}`;
-            //     canal.innerHTML = `${result.channelTitle}`;
-            //     desc.innerHTML = `${result.description}`;
-            // }
         });
 
         const favEstrela = document.createElement('img');

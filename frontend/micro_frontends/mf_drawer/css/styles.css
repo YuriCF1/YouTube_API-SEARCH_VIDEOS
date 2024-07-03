@@ -104,8 +104,8 @@ body {
 .videos_container {
   box-sizing: border-box;
   width: 80%;
-  margin-left: 15%;
-  padding-top: 5rem;
+  margin-left: 16rem;
+  padding-top: 6rem;
 }
 
 .videos_geral {
@@ -119,7 +119,7 @@ body {
   margin-left: 10rem;
 }
 
-.video-resulto {
+.video-resultado {
   display: flex;
   flex-direction: column;
   width: 24%;
@@ -152,9 +152,9 @@ body {
 }
 
 .fav-estrela {
-  width: 3rem;
+  width: 2.5rem;
   position: absolute;
-  top: 13rem;
+  bottom: 35%;
   right: 1rem;
   cursor: pointer;
   opacity: 0;
@@ -312,7 +312,7 @@ iframe {
     cursor: pointer;
   }
 
-  .video-resulto {
+  .video-resultado {
     width: 100%;
   }
 }
