@@ -14,6 +14,19 @@ services:
       - NODE_ENV=development
     command: npm run start
 
+  teste:
+    build:
+      context: ./backend
+      dockerfile: DockerfileTest
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    command: npm run teste
+
   frontend:
     build:
       context: ./frontend
