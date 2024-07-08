@@ -1,5 +1,4 @@
-## Bem vindo!
-Esse projeto está sendo realizado como parte do processo seletivo da empresa iCasei
+## Note: I'll have to change the YouTube API's key to make it work again. If you have your own, feel free to add it and test it by yourself
 
 ### Instruções para uso
 Baixe os arquivos em forma de zip. Abra o seu programa Docker, e em seguida abra o terminal na pasta raiz do projeto e digite:
