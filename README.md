@@ -1,4 +1,4 @@
-## Note: I deleted the API's, while i was cleaning my Google Cloud account. I'll make another one later. If you have your own, feel free to add it and test it by yourself :)
+## Note: I deleted the API, while i was cleaning my Google Cloud account. I'll make another one later. If you have your own, feel free to add it and test it by yourself :)
 
 ### Instruções para uso
 Baixe os arquivos em forma de zip. Abra o seu programa Docker, e em seguida abra o terminal na pasta raiz do projeto e digite:
